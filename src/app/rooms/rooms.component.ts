@@ -1,12 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewChecked, AfterViewInit, Component, DoCheck, OnInit, ViewChild } from '@angular/core';
 import { Room, RoomList } from './rooms';
+import { HeaderComponent } from '../header/header.component';
 
 @Component({
   selector: 'app-rooms',
   templateUrl: './rooms.component.html',
   styleUrl: './rooms.component.scss'
 })
-export class RoomsComponent implements OnInit {
+export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterViewChecked {
+  
   hotelName = 'Hilton Hotel';
   numberOfRooms = 10;
 
@@ -19,7 +21,11 @@ export class RoomsComponent implements OnInit {
 
   roomList: RoomList[] = [];
 
+  @ViewChild(HeaderComponent) headerComponent!: HeaderComponent;
+
   ngOnInit(): void {
+    //console.log(this.headerComponent);
+
     this.roomList = [{
       roomNumber: 1,
       roomType: 'Deluxe Room',
@@ -52,6 +58,18 @@ export class RoomsComponent implements OnInit {
         }]
   }
 
+  ngDoCheck(): void {
+    console.log('on changes is called');
+  }
+
+  ngAfterViewInit(): void {
+    this.headerComponent.title = 'Rooms View';
+  }
+
+  ngAfterViewChecked(): void {
+    throw new Error('Method not implemented.');
+  }
+
   selectedRoom!: RoomList;
 
   rooms: Room = {
@@ -81,4 +99,5 @@ export class RoomsComponent implements OnInit {
     //this.roomList.push(room);
     this.roomList = [...this.roomList, room];
   }
+
 }
