@@ -51,9 +51,15 @@ export class RoomsComponent implements OnInit {
         }]
   }
 
+  selectedRoom!: RoomList;
+
   rooms: Room = {
     totalRooms:20,
     availableRooms:10,
     bookedRooms:5
+  }
+
+  selectRoom(room: RoomList){
+    this.selectedRoom = room;
   }
 }
