@@ -1,4 +1,4 @@
-import { AfterViewChecked, AfterViewInit, Component, DoCheck, OnInit, ViewChild } from '@angular/core';
+import { AfterViewChecked, AfterViewInit, Component, DoCheck, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { Room, RoomList } from './rooms';
 import { HeaderComponent } from '../header/header.component';
 
@@ -62,8 +62,12 @@ export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterView
     console.log('on changes is called');
   }
 
+  @ViewChildren(HeaderComponent) headerChildrenComponent!: QueryList<HeaderComponent>;
+
   ngAfterViewInit(): void {
     this.headerComponent.title = 'Rooms View';
+
+    this.headerChildrenComponent.last.title = 'Last Title';
   }
 
   ngAfterViewChecked(): void {
