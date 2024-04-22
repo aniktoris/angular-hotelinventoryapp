@@ -6,7 +6,8 @@ import { RoomList } from '../rooms';
 })
 export class RoomsService {
 
-  roomList : RoomList[] = [{
+  roomList : RoomList[] = [
+    {
     roomNumber: 1,
     roomType: 'Deluxe Room',
     amenities: 'Air Conditioning, Free Wi-Fi, TV, Bathroom, Kitchen',
@@ -35,10 +36,31 @@ export class RoomsService {
         checkinTime: new Date('11-Nov-2021'),
         checkoutTime: new Date('12-Nov-2021'),
         rating: 3.8
-      }]
-  constructor() { }
+      }
+    ]
 
   getRooms(){
     return this.roomList;
   }
+
+  // constructor(private http: HttpClient) { 
+  //   console.log('rooms service initialized...');
+  // }
+
+  // getRooms(){
+  //   return this.http.get<RoomList[]>('/api/rooms');
+  // }
+
+  // addRoom(room: RoomList){
+  //   return this.http.post<RoomList[]>('api/rooms', room);
+  // }
+
+  // editRoom(room: RoomList){
+  //   return this.http.put<RoomList[]>(`api/rooms/${room.roomNumber}`, room);
+  // }
+
+  // deleteRoom(id: string){
+  //   return this.http.delete<RoomList[]>(`api/rooms/${id}`);
+  // }
+
 }
