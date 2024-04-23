@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { RoomList } from '../rooms';
+import { shareReplay } from 'rxjs';
+import { HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -38,6 +40,13 @@ export class RoomsService {
         rating: 3.8
       }
     ]
+  
+  headers = new HttpHeaders({'token': '1234fgh'})
+
+  //RxJS shareReplay() operator to cache the second call
+  // getRooms$ = this.http.get<RoomList[]>('/api/rooms', {
+  //   headers: this.headers
+  // }).pipe(shareReplay(1));
 
   getRooms(){
     return this.roomList;

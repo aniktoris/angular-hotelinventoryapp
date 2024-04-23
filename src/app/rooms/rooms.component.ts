@@ -2,7 +2,7 @@ import { AfterViewChecked, AfterViewInit, Component, DoCheck, OnDestroy, OnInit,
 import { Room, RoomList } from './rooms';
 import { HeaderComponent } from '../header/header.component';
 import { RoomsService } from './services/rooms.service';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-rooms',
@@ -47,7 +47,7 @@ export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterView
       complete: () => console.log('complete'),
       error: (err) => console.log(err)
     });
-    // this.roomsService.getRooms().subscribe(rooms => {
+    // this.roomsService.getRooms$.subscribe(rooms => {
     //   this.roomList = rooms; 
     // });
   }
@@ -67,6 +67,8 @@ export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterView
   ngAfterViewChecked(): void {
     throw new Error('Method not implemented.');
   }
+
+  //subscription: Subscription;
 
   selectedRoom!: RoomList;
 
@@ -114,7 +116,7 @@ export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterView
   //     rating: 4.1
   //   }
 
-  //   this.roomsService.editRoom(room).subscribe((data) => {
+  //   this.subscription = this.roomsService.editRoom(room).subscribe((data) => {
   //     this.roomList = data;
   //   })
   // }
@@ -123,5 +125,11 @@ export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterView
   //   this.roomsService.deleteRoom('3').subscribe((data) => {
   //     this.roomList = data;
   //   })
+  // }
+
+  // ngOnDestroy(){
+  //   if(this.subscription){
+  //     this.subscription.unsubscribe();
+  //   }
   // }
 }
