@@ -9,7 +9,7 @@ import { Observable, Subscription } from 'rxjs';
   templateUrl: './rooms.component.html',
   styleUrl: './rooms.component.scss'
 })
-export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterViewChecked {
+export class RoomsComponent implements OnInit, DoCheck, AfterViewInit {
   
   hotelName = 'Hilton Hotel';
   numberOfRooms = 10;
@@ -64,9 +64,9 @@ export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterView
     this.headerChildrenComponent.last.title = 'Last Title';
   }
 
-  ngAfterViewChecked(): void {
-    throw new Error('Method not implemented.');
-  }
+  // ngAfterViewChecked(): void {
+  //   throw new Error('Method not implemented.');
+  // }
 
   //subscription: Subscription;
 
